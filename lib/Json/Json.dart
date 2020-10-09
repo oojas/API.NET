@@ -10,7 +10,7 @@ class _ParsingState extends State<Parsing> {
   Future data;
   @override
   void initState() {
-    data = json_parsing("https://jsonplaceholder.typicode.com/posts").getData();
+    data = fetchData();
     super.initState();
   }
 
@@ -28,7 +28,28 @@ class _ParsingState extends State<Parsing> {
         centerTitle: true,
       ),
       backgroundColor: Colors.brown.shade300,
-      body: Container(),
+      body: FutureBuilder(
+          future: fetchData(),
+          builder: (context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              return ListBuilder(snapshot.data, context);
+            }
+            return CircularProgressIndicator();
+          }),
     );
   }
+
+  Widget ListBuilder(List data, BuildContext context) {
+    return ListView.builder(itemBuilder: (context, int index) {
+      return ListTile();
+    });
+  }
+}
+
+Future fetchData() {
+  String url = "https://jsonplaceholder.typicode.com/posts";
+  var data;
+  json_parsing obj = new json_parsing(url);
+  data = obj.getData();
+  return data;
 }
