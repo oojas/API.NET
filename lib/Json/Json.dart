@@ -40,9 +40,19 @@ class _ParsingState extends State<Parsing> {
   }
 
   Widget ListBuilder(List data, BuildContext context) {
-    return ListView.builder(itemBuilder: (context, int index) {
-      return ListTile();
-    });
+    return ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, int index) {
+          return ListTile(
+            title: Text('${data[index]["title"]}'),
+            subtitle: Text('${data[index]["userId"]}'),
+            leading: CircleAvatar(
+              backgroundColor: Colors.black45,
+              radius: 23,
+              child: Text('${data[index]["id"]}'),
+            ),
+          );
+        });
   }
 }
 
