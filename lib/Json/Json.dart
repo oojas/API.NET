@@ -1,3 +1,4 @@
+import 'package:APINET/Json/modal.dart';
 import 'package:flutter/material.dart';
 
 class Parsing extends StatefulWidget {
@@ -6,6 +7,13 @@ class Parsing extends StatefulWidget {
 }
 
 class _ParsingState extends State<Parsing> {
+  Future data;
+  @override
+  void initState() {
+    data = json_parsing("https://jsonplaceholder.typicode.com/posts").getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +28,7 @@ class _ParsingState extends State<Parsing> {
         centerTitle: true,
       ),
       backgroundColor: Colors.brown.shade300,
-      body: ,
+      body: Container(),
     );
   }
 }
