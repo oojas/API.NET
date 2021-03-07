@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 
+// ignore: camel_case_types
 class json_parsing {
   final String url;
 
